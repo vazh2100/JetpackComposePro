@@ -1,5 +1,6 @@
 package com.vazh2100.jetpackcompose.c_instagram
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,6 +10,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,18 +24,22 @@ import androidx.compose.ui.unit.dp
 @Preview
 @Composable
 fun InstagramCard(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier.height(500.dp).padding(8.dp)
+    Card(
+        colors = CardDefaults.cardColors(),
+        shape = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp),
+        border = BorderStroke(1.dp, Color.Black)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth().height(100.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(modifier = Modifier.size(30.dp).background(color = Color.Red))
-            Part("6,960", "Posts")
-            Part("436 M", "Followers")
-            Part("76", "Following")
+        Box(modifier = modifier.height(500.dp).padding(8.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth().height(100.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(modifier = Modifier.size(30.dp).background(color = Color.Red))
+                Part("6,960", "Posts")
+                Part("436 M", "Followers")
+                Part("76", "Following")
+            }
         }
     }
 }
