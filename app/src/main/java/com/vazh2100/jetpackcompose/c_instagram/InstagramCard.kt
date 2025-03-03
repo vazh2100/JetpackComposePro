@@ -19,8 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Preview
 @Composable
@@ -38,21 +40,25 @@ fun InstagramCard(modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Box(modifier = Modifier.size(30.dp).background(color = Color.Red))
-                Part("6,960", "Posts")
-                Part("436 M", "Followers")
-                Part("76", "Following")
+                UserStat("6,960", "Posts")
+                UserStat("436 M", "Followers")
+                UserStat("76", "Following")
             }
         }
     }
 }
 
 @Composable
-fun Part(text1: String, text2: String, modifier: Modifier = Modifier) {
+fun UserStat(
+    value: String,
+    title: String,
+    modifier: Modifier = Modifier,
+) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text1)
-        Text(text2)
+        Text(text = value, fontFamily = FontFamily.Cursive, fontSize = 28.sp)
+        Text(text = title, fontFamily = FontFamily.Monospace)
     }
 }
