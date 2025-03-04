@@ -1,7 +1,7 @@
 package com.vazh2100.jetpackcompose.c_instagram
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,11 +18,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.vazh2100.jetpackcompose.R
 
 @Preview
 @Composable
@@ -39,7 +40,12 @@ fun InstagramCard(modifier: Modifier = Modifier) {
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(modifier = Modifier.size(30.dp).background(color = Color.Red))
+                Image(
+                    modifier = Modifier.size(48.dp),
+                    painter = painterResource(R.drawable.instagram),
+                    contentDescription = "Instagram Logo",
+
+                    )
                 UserStat("6,960", "Posts")
                 UserStat("436 M", "Followers")
                 UserStat("76", "Following")
