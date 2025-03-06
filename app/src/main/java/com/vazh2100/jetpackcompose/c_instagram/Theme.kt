@@ -1,4 +1,4 @@
-package com.vazh2100.jetpackcompose.ui.theme
+package com.vazh2100.jetpackcompose.c_instagram
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

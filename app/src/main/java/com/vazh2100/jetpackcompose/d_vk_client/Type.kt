@@ -1,4 +1,4 @@
-package com.vazh2100.jetpackcompose.ui.theme
+package com.vazh2100.jetpackcompose.d_vk_client
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
