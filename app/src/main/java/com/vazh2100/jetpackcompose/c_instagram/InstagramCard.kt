@@ -3,14 +3,13 @@ package com.vazh2100.jetpackcompose.c_instagram
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -34,9 +33,9 @@ fun InstagramCard(modifier: Modifier = Modifier) {
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface),
         modifier = modifier.padding(16.dp)
     ) {
-        Box(modifier = modifier.height(500.dp).padding(8.dp)) {
+        Column(modifier = modifier.padding(8.dp)) {
             Row(
-                modifier = Modifier.fillMaxWidth().height(100.dp),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -50,6 +49,34 @@ fun InstagramCard(modifier: Modifier = Modifier) {
                 UserStat("436 M", "Followers")
                 UserStat("76", "Following")
             }
+//            Spacer(modifier.height(12.dp))
+
+            Column(
+                modifier = Modifier.padding(start = 16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = "Instagram",
+                    fontFamily = FontFamily.Cursive,
+                    fontSize = 28.sp,
+                    lineHeight = 28.sp
+                )
+                Text(
+                    text = "#YoursToMake",
+                    fontFamily = FontFamily.SansSerif,
+                    fontSize = 12.sp,
+                    lineHeight = 12.sp
+                )
+                Text(
+                    text = "https://facebook.com",
+                    fontFamily = FontFamily.SansSerif,
+                    fontSize = 12.sp,
+                    lineHeight = 12.sp
+                )
+                Button({}, shape = RoundedCornerShape(8.dp)) {
+                    Text("Follow")
+                }
+            }
+
         }
     }
 }
