@@ -27,7 +27,7 @@ fun UserInfo(name: String, age: Int, modifier: Modifier = Modifier) {
 
             )
             Text(
-                text = "Nwme: $name\nAge: $age",
+                text = "Name: $name\nAge: $age",
                 color = Color.Blue,
                 modifier = modifier
                     .background(Color.Red)

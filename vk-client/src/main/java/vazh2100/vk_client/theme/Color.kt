@@ -1,4 +1,4 @@
-package com.vazh2100.jetpackcompose.d_vk_client
+package vazh2100.vk_client.theme
 
 import androidx.compose.ui.graphics.Color
 
