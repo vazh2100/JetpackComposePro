@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import vazh2100.vk_client.d_vk_client.Post
+import vazh2100.vk_client.g_state.MainScreen
 import vazh2100.vk_client.theme.VkTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             VkTheme {
                 Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).padding(8.dp)) {
-                    Post()
+                    MainScreen()
                 }
             }
         }
