@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import vazh2100.vk_client.g_state.MainScreen
+import vazh2100.vk_client.h_click_listeners.MainScreen
 import vazh2100.vk_client.theme.VkTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,6 +25,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
-
