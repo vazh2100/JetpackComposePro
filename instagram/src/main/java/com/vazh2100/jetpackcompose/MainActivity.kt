@@ -12,8 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import com.vazh2100.jetpackcompose.c_instagram.JetpackComposeTheme
-import com.vazh2100.jetpackcompose.e_lazy_column.ListScreen
-import com.vazh2100.jetpackcompose.e_lazy_column.MainViewModel
+
+import com.vazh2100.jetpackcompose.f_swipe_to_dismiss.ListScreen
+import com.vazh2100.jetpackcompose.f_swipe_to_dismiss.MainViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
