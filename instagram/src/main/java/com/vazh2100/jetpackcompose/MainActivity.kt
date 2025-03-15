@@ -11,9 +11,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
-import com.vazh2100.jetpackcompose.c_instagram.InstagramCard
 import com.vazh2100.jetpackcompose.c_instagram.JetpackComposeTheme
-import com.vazh2100.jetpackcompose.d_viewmodel.MainViewModel
+import com.vazh2100.jetpackcompose.e_lazy_column.ListScreen
+import com.vazh2100.jetpackcompose.e_lazy_column.MainViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackComposeTheme {
                 Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).padding(8.dp)) {
-                    InstagramCard(viewModel)
+                    ListScreen(viewModel)
                 }
             }
         }
