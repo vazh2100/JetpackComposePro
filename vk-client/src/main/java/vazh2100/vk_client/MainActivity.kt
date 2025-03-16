@@ -11,9 +11,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
-import vazh2100.vk_client.i_view_model.MainScreen
+import vazh2100.vk_client.j_lazy_column.MainScreen
 
-import vazh2100.vk_client.i_view_model.MainViewModel
+import vazh2100.vk_client.j_lazy_column.MainViewModel
 import vazh2100.vk_client.theme.VkTheme
 
 class MainActivity : ComponentActivity() {
