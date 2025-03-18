@@ -1,5 +1,6 @@
 package vazh2100.vk_client.l_comments
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -36,11 +37,16 @@ fun MainScreen(
                 feed = {
                     val screenState by viewModel.screenState.collectAsState()
                     when (val state = screenState) {
-                        is HomeScreenState.Comments -> CommentScreen(
-                            feedPost = state.feedPost,
-                            comments = state.comments,
-                        )
+
                         is HomeScreenState.Posts -> FeedScreen(viewModel, state.feedPosts)
+                        is HomeScreenState.Comments -> {
+                            BackHandler(onBack = viewModel::onCommentsClose)
+                            CommentScreen(
+                                feedPost = state.feedPost,
+                                comments = state.comments,
+                                onBackPress = viewModel::onCommentsClose
+                            )
+                        }
                     }
 
                 },

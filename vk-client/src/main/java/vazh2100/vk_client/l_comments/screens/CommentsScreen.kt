@@ -22,6 +22,7 @@ import vazh2100.vk_client.l_comments.widgets.CommentItem
 fun CommentScreen(
     feedPost: FeedPost,
     comments: List<Comment>,
+    onBackPress: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -30,7 +31,7 @@ fun CommentScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {},
+                        onClick = onBackPress,
                         content = {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
