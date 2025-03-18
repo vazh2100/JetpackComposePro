@@ -1,4 +1,4 @@
-package vazh2100.vk_client.l_comments.widgets
+package vazh2100.vk_client.l_comments.screens.comments.widgets
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

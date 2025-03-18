@@ -1,4 +1,4 @@
-package vazh2100.vk_client.l_comments.screens
+package vazh2100.vk_client.l_comments.screens.feed
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -7,21 +7,18 @@ import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
-import vazh2100.vk_client.j_lazy_column.entities.FeedPost
-
+import androidx.lifecycle.viewmodel.compose.viewModel
 import vazh2100.vk_client.j_lazy_column.widgets.PostCard
-import vazh2100.vk_client.l_comments.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedScreen(
-    viewModel: HomeViewModel,
-    postStates: List<State<FeedPost>>,
+    onCommentsPress: () -> Unit,
+    viewModel: FeedViewModel = viewModel(),
     modifier: Modifier = Modifier,
 ) {
-
+    val postStates = viewModel.feedPosts
     viewModel.recomposeList.intValue
 
     LazyColumn(modifier = modifier) {
@@ -38,7 +35,7 @@ fun FeedScreen(
                     feedPost = it,
                     onViewsPress = { viewModel.onViewsPress(index) },
                     onSharesPress = { viewModel.onSharesPress(index) },
-                    onCommentsPress = { viewModel.onCommentsPress(index) },
+                    onCommentsPress = onCommentsPress,
                     onLikesPress = { viewModel.onLikesPress(index) },
                 )
             }

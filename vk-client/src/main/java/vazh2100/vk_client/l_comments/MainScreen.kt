@@ -1,27 +1,25 @@
 package vazh2100.vk_client.l_comments
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import vazh2100.vk_client.k_navigation.navigation.AppNavGraph
+
 import vazh2100.vk_client.k_navigation.widgets.BottomBar
-import vazh2100.vk_client.l_comments.screens.CommentScreen
-import vazh2100.vk_client.l_comments.screens.FeedScreen
-import vazh2100.vk_client.l_comments.screens.HomeScreenState
+import vazh2100.vk_client.l_comments.navigation.AppNavGraph
+import vazh2100.vk_client.l_comments.navigation.Screen
+import vazh2100.vk_client.l_comments.screens.comments.CommentScreen
+import vazh2100.vk_client.l_comments.screens.feed.FeedScreen
 
 @Composable
 fun MainScreen(
-    viewModel: HomeViewModel,
     modifier: Modifier = Modifier,
 ) {
 
@@ -34,22 +32,8 @@ fun MainScreen(
             AppNavGraph(
                 modifier = Modifier.padding(paddingValues),
                 navController = navController,
-                feed = {
-                    val screenState by viewModel.screenState.collectAsState()
-                    when (val state = screenState) {
-
-                        is HomeScreenState.Posts -> FeedScreen(viewModel, state.feedPosts)
-                        is HomeScreenState.Comments -> {
-                            BackHandler(onBack = viewModel::onCommentsClose)
-                            CommentScreen(
-                                feedPost = state.feedPost,
-                                comments = state.comments,
-                                onBackPress = viewModel::onCommentsClose
-                            )
-                        }
-                    }
-
-                },
+                feed = { FeedScreen(onCommentsPress = { navController.navigate(Screen.Comments.route) }) },
+                comments = { CommentScreen(onBackPress = { navController.popBackStack() }) },
                 favourite = {
                     var count by rememberSaveable { mutableIntStateOf(0) }
                     Text("favourite $count", modifier = Modifier.clickable { count++ })
