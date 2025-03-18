@@ -11,15 +11,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
-
-import vazh2100.vk_client.j_lazy_column.MainViewModel
-import vazh2100.vk_client.k_navigation.MainScreen
+import vazh2100.vk_client.l_comments.HomeViewModel
+import vazh2100.vk_client.l_comments.MainScreen
 import vazh2100.vk_client.theme.VkTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = ViewModelProvider(this)[MainViewModel::class]
+        val viewModel = ViewModelProvider(this)[HomeViewModel::class]
         setContent {
             VkTheme {
                 Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).padding(8.dp)) {
