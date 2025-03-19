@@ -12,8 +12,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import vazh2100.vk_client.j_lazy_column.entities.FeedPost
+import vazh2100.vk_client.l_comments.navigation.BottomBar
 
-import vazh2100.vk_client.k_navigation.widgets.BottomBar
 import vazh2100.vk_client.l_comments.navigation.BottomNavGraph
 import vazh2100.vk_client.l_comments.navigation.Screen
 import vazh2100.vk_client.l_comments.screens.comments.CommentScreen
