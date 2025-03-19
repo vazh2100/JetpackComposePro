@@ -14,7 +14,7 @@ import vazh2100.vk_client.j_lazy_column.widgets.PostCard
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedScreen(
-    onCommentsPress: () -> Unit,
+    onCommentsPress: (postId: Int) -> Unit,
     viewModel: FeedViewModel = viewModel(),
     modifier: Modifier = Modifier,
 ) {
@@ -35,7 +35,7 @@ fun FeedScreen(
                     feedPost = it,
                     onViewsPress = { viewModel.onViewsPress(index) },
                     onSharesPress = { viewModel.onSharesPress(index) },
-                    onCommentsPress = onCommentsPress,
+                    onCommentsPress = { onCommentsPress(it.value.id) },
                     onLikesPress = { viewModel.onLikesPress(index) },
                 )
             }

@@ -13,7 +13,7 @@ import vazh2100.vk_client.l_comments.navigation.Screen.Profile
 fun BottomNavGraph(
     navController: NavHostController,
     feed: @Composable () -> Unit,
-    comments: @Composable () -> Unit,
+    comments: @Composable (id: Int) -> Unit,
     favourite: @Composable () -> Unit,
     profile: @Composable () -> Unit,
     modifier: Modifier = Modifier

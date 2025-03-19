@@ -16,18 +16,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import vazh2100.vk_client.j_lazy_column.entities.FeedPost
 import vazh2100.vk_client.l_comments.screens.comments.widgets.CommentItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommentScreen(
     onBackPress: () -> Unit,
-    feedPost: FeedPost,
-    viewModel: CommentsViewModel = viewModel(factory = CommentsViewModel.Factory(feedPost)),
+    postId: Int,
+    viewModel: CommentsViewModel = viewModel(factory = CommentsViewModel.Factory(postId)),
     modifier: Modifier = Modifier,
 ) {
-    
+
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -43,7 +42,7 @@ fun CommentScreen(
                         },
                     )
                 },
-                title = { Text("Comments for ${feedPost.id}") },
+                title = { Text("Comments for ${viewModel.postId}") },
             )
         },
         content = { padding ->
