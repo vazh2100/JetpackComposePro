@@ -11,6 +11,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import vazh2100.vk_client.j_lazy_column.entities.FeedPost
 import vazh2100.vk_client.l_comments.navigation.BottomBar
 import vazh2100.vk_client.l_comments.navigation.BottomNavGraph
 import vazh2100.vk_client.l_comments.navigation.Screen
@@ -31,7 +32,13 @@ fun MainScreen(
             BottomNavGraph(
                 modifier = Modifier.padding(paddingValues),
                 navController = navController,
-                feed = { FeedScreen(onCommentsPress = { navController.navigate(Screen.Comments.route(it)) }) },
+                feed = {
+                    FeedScreen(
+                        onCommentsPress = {
+                            navController.navigate(Screen.Comments.route(it, feedPost = FeedPost(20)))
+                        },
+                    )
+                },
                 comments = { postId -> CommentScreen(onBackPress = { navController.popBackStack() }, postId = postId) },
                 favourite = {
                     var count by rememberSaveable { mutableIntStateOf(0) }
@@ -39,7 +46,6 @@ fun MainScreen(
                 },
                 profile = { Text("profile") }
             )
-
         },
     )
 }
