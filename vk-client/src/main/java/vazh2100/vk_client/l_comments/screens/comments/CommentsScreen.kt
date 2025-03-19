@@ -16,17 +16,18 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import vazh2100.vk_client.j_lazy_column.entities.FeedPost
 import vazh2100.vk_client.l_comments.screens.comments.widgets.CommentItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommentScreen(
     onBackPress: () -> Unit,
-    viewModel: CommentsViewModel = viewModel(),
+    feedPost: FeedPost,
+    viewModel: CommentsViewModel = viewModel(factory = CommentsViewModel.Factory(feedPost)),
     modifier: Modifier = Modifier,
 ) {
-
-    val feedPost = viewModel.feedPost
+    
     Scaffold(
         modifier = modifier,
         topBar = {

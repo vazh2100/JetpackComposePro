@@ -2,13 +2,15 @@ package vazh2100.vk_client.l_comments.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import vazh2100.vk_client.l_comments.navigation.Screen.Favourite
+import vazh2100.vk_client.l_comments.navigation.Screen.Home
+import vazh2100.vk_client.l_comments.navigation.Screen.Profile
 
 @Composable
-fun AppNavGraph(
+fun BottomNavGraph(
     navController: NavHostController,
     feed: @Composable () -> Unit,
     comments: @Composable () -> Unit,
@@ -19,11 +21,10 @@ fun AppNavGraph(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = Screen.Feed.route
+        startDestination = Home.route
     ) {
-        composable(route = Screen.Feed.route, content = { feed() })
-        composable(route = Screen.Comments.route, content = { comments() })
-        composable(route = Screen.Favourite.route, content = { favourite() })
-        composable(route = Screen.Profile.route, content = { profile() })
+        homeNavGraph(feed = feed, comments = comments)
+        composable(route = Favourite.route, content = { favourite() })
+        composable(route = Profile.route, content = { profile() })
     }
 }
