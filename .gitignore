@@ -8,3 +8,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+/vk-client/src/main/java/vazh2100/vk_client/Credentials.kt
