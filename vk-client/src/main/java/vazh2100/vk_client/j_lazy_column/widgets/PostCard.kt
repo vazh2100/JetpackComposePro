@@ -20,8 +20,8 @@ fun PostCard(
     onCommentsPress: () -> Unit,
     onLikesPress: () -> Unit,
 ) {
-    Card(modifier = modifier.padding(16.dp)) {
-        Column {
+    Card {
+        Column(modifier = modifier.padding(16.dp)) {
             PostHeader(feedPost)
             Spacer(Modifier.height(8.dp))
             PostContent(feedPost)
