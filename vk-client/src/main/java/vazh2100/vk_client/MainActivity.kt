@@ -10,8 +10,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import com.vk.id.VKID
-import vazh2100.vk_client.n_login.screens.LoginScreen
-import vazh2100.vk_client.theme.VkTheme
+import vazh2100.vk_client.presentation.screens.login.LoginScreen
+
+import vazh2100.vk_client.presentation.theme.VkTheme
 
 class MainActivity : ComponentActivity() {
 
