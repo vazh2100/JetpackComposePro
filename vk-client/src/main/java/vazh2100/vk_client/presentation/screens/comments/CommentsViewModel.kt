@@ -4,15 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import vazh2100.vk_client.entities.Comment
+import vazh2100.vk_client.domain.entities.Comment
 
-class CommentsViewModel(val postId: Int) : ViewModel() {
+class CommentsViewModel(val postId: Long) : ViewModel() {
     private val _comments = MutableStateFlow(buildList { repeat(10) { add(Comment(it)) } })
     val comments = _comments.asStateFlow()
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val postId: Int) : ViewModelProvider.Factory {
-
+    class Factory(private val postId: Long) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return CommentsViewModel(postId) as T
         }

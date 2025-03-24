@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import vazh2100.vk_client.R
-import vazh2100.vk_client.entities.FeedPost
+import vazh2100.vk_client.domain.entities.FeedPost
 import vazh2100.vk_client.presentation.theme.darkRed
 
 @Composable
@@ -29,7 +29,7 @@ fun PostBottom(
     val shares by remember { derivedStateOf { feedPost.value.statistics.shares } }
     val comments by remember { derivedStateOf { feedPost.value.statistics.comments } }
     val likes by remember { derivedStateOf { feedPost.value.statistics.likes } }
-    val liked by remember { derivedStateOf { feedPost.value.isLiked } }
+    val liked by remember { derivedStateOf { feedPost.value.statistics.isLiked } }
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -61,11 +61,7 @@ fun PostBottom(
 }
 
 fun formatStatistic(count: Int): String {
-    return if (count > 100_000) {
-        String.format("%sK", count / 1000)
-    } else if (count > 1000) {
-        String.format("%.1fK", count / 1000f)
-    } else {
-        count.toString()
-    }
+    return if (count > 100_000) String.format("%sK", count / 1000)
+    else if (count > 1000) String.format("%.1fK", count / 1000f)
+    else count.toString()
 }

@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import vazh2100.vk_client.entities.FeedPost
+import vazh2100.vk_client.domain.entities.FeedPost
 
 @Composable
 fun PostHeader(

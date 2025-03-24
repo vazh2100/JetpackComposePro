@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import vazh2100.vk_client.entities.FeedPost
+import vazh2100.vk_client.domain.entities.FeedPost
 
 
 @Composable
@@ -21,6 +21,7 @@ fun PostCard(
     onCommentsPress: () -> Unit,
     onLikesPress: () -> Unit,
 ) {
+
     Card {
         Column(modifier = modifier.padding(16.dp)) {
             PostHeader(feedPost)

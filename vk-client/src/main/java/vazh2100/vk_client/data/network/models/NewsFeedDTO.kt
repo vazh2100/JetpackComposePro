@@ -8,5 +8,6 @@ data class NewsFeedResponseDTO(
 
 data class NewsFeedDTO(
     @SerializedName("items") val posts: List<PostDTO>,
-    @SerializedName("groups") val groups: List<GroupDTO>
+    @SerializedName("groups") val groups: List<GroupDTO>,
+    @SerializedName("next_from") val nextFrom: String
 )

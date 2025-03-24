@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import vazh2100.vk_client.entities.Comment
+import vazh2100.vk_client.domain.entities.Comment
 
 @Composable
 fun CommentItem(

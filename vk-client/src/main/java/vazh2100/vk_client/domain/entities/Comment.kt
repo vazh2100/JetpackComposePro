@@ -1,4 +1,4 @@
-package vazh2100.vk_client.entities
+package vazh2100.vk_client.domain.entities
 
 import vazh2100.vk_client.R
 

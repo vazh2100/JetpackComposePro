@@ -12,7 +12,7 @@ import vazh2100.vk_client.presentation.navigation.Screen.Home
 
 fun NavGraphBuilder.homeNavGraph(
     feed: @Composable () -> Unit,
-    comments: @Composable (postId: Int) -> Unit,
+    comments: @Composable (postId: Long) -> Unit,
 ) {
     navigation(
         route = Home.route,
@@ -22,10 +22,10 @@ fun NavGraphBuilder.homeNavGraph(
         composable(
             route = Comments.route,
             arguments = listOf(
-                navArgument(Comments.POST_ID_KEY) { type = NavType.IntType },
+                navArgument(Comments.POST_ID_KEY) { type = NavType.LongType },
             ),
         ) {
-            val id = it.arguments?.getInt(Comments.POST_ID_KEY) ?: error("Ошибка программиста")
+            val id = it.arguments?.getLong(Comments.POST_ID_KEY) ?: error("Ошибка программиста")
             comments(id)
         }
     }

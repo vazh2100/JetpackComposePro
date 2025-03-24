@@ -6,28 +6,39 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vk.id.VKID
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import vazh2100.vk_client.data.mappers.NewsFeedMapper.toFeedPosts
-import vazh2100.vk_client.data.network.ApiFactory.apiService
-import vazh2100.vk_client.entities.FeedPost
+import vazh2100.vk_client.domain.entities.FeedPost
+import vazh2100.vk_client.domain.usecases.GetFeed
+import vazh2100.vk_client.domain.usecases.Like
+import vazh2100.vk_client.domain.usecases.Unlike
 
 class FeedViewModel : ViewModel() {
+    private val getRecommendations = GetFeed
+    private val like = Like
+    private val unlike = Unlike
 
+    private var startFrom: String? = null
     private val _feedPosts = mutableListOf<MutableState<FeedPost>>()
-
     val feedPosts: List<State<FeedPost>> = _feedPosts
+
+    private val _nextLoading = MutableStateFlow(false)
+    val nextLoading = _nextLoading.asStateFlow()
+
     val recomposeList = mutableIntStateOf(0)
 
     init {
-        onStart()
+        loadFeed()
     }
 
-    private fun onStart() = viewModelScope.launch {
-        val feedPosts = apiService.feed(VKID.instance.accessToken?.token ?: "").toFeedPosts()
-        val newFeed = feedPosts.map { mutableStateOf(it) }
-        _feedPosts.addAll(newFeed)
+    fun loadFeed() = viewModelScope.launch {
+        _nextLoading.value = true
+        val (newsFeed, nextFrom) = getRecommendations(startFrom)
+        startFrom = nextFrom
+        _feedPosts.addAll(newsFeed.map { mutableStateOf(it) })
         recomposeList.intValue++
+        _nextLoading.value = false
     }
 
     fun onViewsPress(index: Int) {
@@ -37,16 +48,26 @@ class FeedViewModel : ViewModel() {
     }
 
     fun onSharesPress(index: Int) {
+
         val postState = _feedPosts[index]
         val post = postState.value
         postState.value = post.copy(statistics = post.statistics.copy(shares = post.shares + 1))
     }
 
     fun onLikesPress(index: Int) {
-        val postState = _feedPosts[index]
-        val post = postState.value
-        postState.value = post.copy(statistics = post.statistics.copy(likes = post.likes + 1))
+        viewModelScope.launch {
+            val postState = _feedPosts[index]
+            val post = postState.value
+            if (!post.statistics.isLiked) {
+                like(post)
+                postState.value = post.copy(statistics = post.statistics.copy(likes = post.likes + 1, isLiked = true))
+            } else {
+                unlike(post)
+                postState.value = post.copy(statistics = post.statistics.copy(likes = post.likes - 1, isLiked = false))
+            }
+
+        }
     }
 
-    fun onSwipe(index: Int) = run { _feedPosts.removeAt(index); recomposeList.value += 1 }
+    fun onSwipe(index: Int) = run { _feedPosts.removeAt(index); recomposeList.intValue += 1 }
 }

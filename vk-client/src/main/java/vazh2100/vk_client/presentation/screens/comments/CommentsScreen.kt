@@ -22,9 +22,9 @@ import vazh2100.vk_client.presentation.screens.comments.widgets.CommentItem
 @Composable
 fun CommentScreen(
     onBackPress: () -> Unit,
-    postId: Int,
-    viewModel: CommentsViewModel = viewModel(factory = CommentsViewModel.Factory(postId)),
+    postId: Long,
     modifier: Modifier = Modifier,
+    viewModel: CommentsViewModel = viewModel(factory = CommentsViewModel.Factory(postId)),
 ) {
 
     Scaffold(

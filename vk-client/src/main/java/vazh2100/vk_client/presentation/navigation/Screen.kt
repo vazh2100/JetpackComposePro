@@ -8,7 +8,7 @@ sealed class Screen(val route: String) {
         route = "comments&{post_id}&{feed_post}"
     ) {
         const val POST_ID_KEY = "post_id"
-        fun route(id: String): String {
+        fun route(id: Long): String {
             return "comments&$id"
         }
     }
