@@ -19,8 +19,6 @@ import vazh2100.vk_client.presentation.theme.darkRed
 @Composable
 fun PostBottom(
     feedPost: State<FeedPost>,
-    onViewsPress: () -> Unit,
-    onSharesPress: () -> Unit,
     onCommentsPress: () -> Unit,
     onLikesPress: () -> Unit,
     modifier: Modifier = Modifier,
@@ -37,13 +35,13 @@ fun PostBottom(
         IconWithText(
             iconResId = R.drawable.ic_views_count,
             text = formatStatistic(views),
-            modifier = Modifier.clickable(onClick = onViewsPress),
+            modifier = Modifier,
         )
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             IconWithText(
                 iconResId = R.drawable.ic_share,
                 text = formatStatistic(shares),
-                modifier = Modifier.clickable(onClick = onSharesPress),
+                modifier = Modifier,
             )
             IconWithText(
                 iconResId = R.drawable.ic_comment,

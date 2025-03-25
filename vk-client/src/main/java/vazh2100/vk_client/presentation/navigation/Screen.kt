@@ -5,7 +5,7 @@ sealed class Screen(val route: String) {
     data object Home : Screen(route = "home")
     data object Feed : Screen(route = "news_feed")
     data object Comments : Screen(
-        route = "comments&{post_id}&{feed_post}"
+        route = "comments&{post_id}"
     ) {
         const val POST_ID_KEY = "post_id"
         fun route(id: Long): String {

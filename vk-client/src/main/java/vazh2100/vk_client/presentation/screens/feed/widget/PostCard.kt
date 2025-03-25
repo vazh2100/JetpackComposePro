@@ -16,8 +16,6 @@ import vazh2100.vk_client.domain.entities.FeedPost
 fun PostCard(
     modifier: Modifier = Modifier,
     feedPost: State<FeedPost>,
-    onViewsPress: () -> Unit,
-    onSharesPress: () -> Unit,
     onCommentsPress: () -> Unit,
     onLikesPress: () -> Unit,
 ) {
@@ -30,8 +28,6 @@ fun PostCard(
             Spacer(Modifier.height(8.dp))
             PostBottom(
                 feedPost = feedPost,
-                onViewsPress = onViewsPress,
-                onSharesPress = onSharesPress,
                 onCommentsPress = onCommentsPress,
                 onLikesPress = onLikesPress,
             )

@@ -9,7 +9,7 @@ import vazh2100.vk_client.domain.entities.FeedPost
 object GetFeed {
     suspend operator fun invoke(startFrom: String?): Pair<List<FeedPost>, String> = withContext(Dispatchers.IO) {
         val token = GetToken()
-        val response = apiService.feed(token, startFrom)
+        val response = apiService.recommendations(token, startFrom)
         response.toFeedPosts() to response.response.nextFrom
     }
 }

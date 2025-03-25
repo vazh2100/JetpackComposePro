@@ -49,8 +49,6 @@ fun FeedScreen(
             ) {
                 PostCard(
                     feedPost = it,
-                    onViewsPress = { viewModel.onViewsPress(index) },
-                    onSharesPress = { viewModel.onSharesPress(index) },
                     onCommentsPress = { onCommentsPress(it.value.id) },
                     onLikesPress = { viewModel.onLikesPress(index) },
                 )

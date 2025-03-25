@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import vazh2100.vk_client.domain.entities.FeedPost
 import vazh2100.vk_client.domain.usecases.GetFeed
+import vazh2100.vk_client.domain.usecases.IgnorePost
 import vazh2100.vk_client.domain.usecases.Like
 import vazh2100.vk_client.domain.usecases.Unlike
 
@@ -18,6 +19,7 @@ class FeedViewModel : ViewModel() {
     private val getRecommendations = GetFeed
     private val like = Like
     private val unlike = Unlike
+    private val ignorePost = IgnorePost
 
     private var startFrom: String? = null
     private val _feedPosts = mutableListOf<MutableState<FeedPost>>()
@@ -41,33 +43,23 @@ class FeedViewModel : ViewModel() {
         _nextLoading.value = false
     }
 
-    fun onViewsPress(index: Int) {
+    fun onLikesPress(index: Int) = viewModelScope.launch {
         val postState = _feedPosts[index]
         val post = postState.value
-        postState.value = post.copy(statistics = post.statistics.copy(views = post.views + 1))
-    }
-
-    fun onSharesPress(index: Int) {
-
-        val postState = _feedPosts[index]
-        val post = postState.value
-        postState.value = post.copy(statistics = post.statistics.copy(shares = post.shares + 1))
-    }
-
-    fun onLikesPress(index: Int) {
-        viewModelScope.launch {
-            val postState = _feedPosts[index]
-            val post = postState.value
-            if (!post.statistics.isLiked) {
-                like(post)
-                postState.value = post.copy(statistics = post.statistics.copy(likes = post.likes + 1, isLiked = true))
-            } else {
-                unlike(post)
-                postState.value = post.copy(statistics = post.statistics.copy(likes = post.likes - 1, isLiked = false))
-            }
-
+        if (!post.statistics.isLiked) {
+            like(post)
+            postState.value = post.copy(statistics = post.statistics.copy(likes = post.likes + 1, isLiked = true))
+        } else {
+            unlike(post)
+            postState.value = post.copy(statistics = post.statistics.copy(likes = post.likes - 1, isLiked = false))
         }
+
     }
 
-    fun onSwipe(index: Int) = run { _feedPosts.removeAt(index); recomposeList.intValue += 1 }
+    fun onSwipe(index: Int) = viewModelScope.launch {
+        val post = _feedPosts[index].value
+        ignorePost(post)
+        _feedPosts.removeAt(index);
+        recomposeList.intValue += 1
+    }
 }

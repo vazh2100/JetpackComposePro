@@ -13,6 +13,13 @@ interface ApiService {
         @Query("filters") filters: List<String> = listOf("post"),
     ): NewsFeedResponseDTO
 
+    @GET("newsfeed.getRecommended?v=5.199")
+    suspend fun recommendations(
+        @Query("access_token") token: String,
+        @Query("start_from") startFrom: String?,
+        @Query("filters") filters: List<String> = listOf("post"),
+    ): NewsFeedResponseDTO
+
     @GET("likes.add?v=5.199")
     suspend fun like(
         @Query("access_token") token: String,
@@ -27,5 +34,13 @@ interface ApiService {
         @Query("owner_id") ownerId: Long,
         @Query("item_id") postId: Long,
         @Query("type") type: String = "post",
+    )
+
+    @GET("newsfeed.ignoreItem?v=5.199")
+    suspend fun ignoreItem(
+        @Query("access_token") token: String,
+        @Query("owner_id") ownerId: Long,
+        @Query("item_id") postId: Long,
+        @Query("type") type: String = "wall",
     )
 }
