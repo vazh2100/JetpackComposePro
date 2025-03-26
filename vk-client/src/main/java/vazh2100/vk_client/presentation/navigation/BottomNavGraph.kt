@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import vazh2100.vk_client.domain.entities.FeedPost
 import vazh2100.vk_client.presentation.navigation.Screen.Favourite
 import vazh2100.vk_client.presentation.navigation.Screen.Home
 import vazh2100.vk_client.presentation.navigation.Screen.Profile
@@ -13,7 +14,7 @@ import vazh2100.vk_client.presentation.navigation.Screen.Profile
 fun BottomNavGraph(
     navController: NavHostController,
     feed: @Composable () -> Unit,
-    comments: @Composable (id: Long) -> Unit,
+    comments: @Composable (post: FeedPost) -> Unit,
     favourite: @Composable () -> Unit,
     profile: @Composable () -> Unit,
     modifier: Modifier = Modifier

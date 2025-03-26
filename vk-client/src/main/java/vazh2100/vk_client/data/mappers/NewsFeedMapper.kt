@@ -1,6 +1,6 @@
 package vazh2100.vk_client.data.mappers
 
-import vazh2100.vk_client.data.network.models.NewsFeedResponseDTO
+import vazh2100.vk_client.data.network.models.feed.NewsFeedResponseDTO
 import vazh2100.vk_client.domain.entities.FeedPost
 import vazh2100.vk_client.domain.entities.PostStatistics
 import java.text.SimpleDateFormat

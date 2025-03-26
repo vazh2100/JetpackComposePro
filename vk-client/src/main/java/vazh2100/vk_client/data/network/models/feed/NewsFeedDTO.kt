@@ -1,4 +1,4 @@
-package vazh2100.vk_client.data.network.models
+package vazh2100.vk_client.data.network.models.feed
 
 import com.google.gson.annotations.SerializedName
 

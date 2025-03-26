@@ -6,13 +6,15 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
+import com.google.gson.Gson
+import vazh2100.vk_client.domain.entities.FeedPost
 import vazh2100.vk_client.presentation.navigation.Screen.Comments
 import vazh2100.vk_client.presentation.navigation.Screen.Feed
 import vazh2100.vk_client.presentation.navigation.Screen.Home
 
 fun NavGraphBuilder.homeNavGraph(
     feed: @Composable () -> Unit,
-    comments: @Composable (postId: Long) -> Unit,
+    comments: @Composable (post: FeedPost) -> Unit,
 ) {
     navigation(
         route = Home.route,
@@ -22,11 +24,12 @@ fun NavGraphBuilder.homeNavGraph(
         composable(
             route = Comments.route,
             arguments = listOf(
-                navArgument(Comments.POST_ID_KEY) { type = NavType.LongType },
+                navArgument(Comments.POST_KEY) { type = NavType.StringType },
             ),
         ) {
-            val id = it.arguments?.getLong(Comments.POST_ID_KEY) ?: error("Ошибка программиста")
-            comments(id)
+            val postJson = it.arguments?.getString(Comments.POST_KEY) ?: error("Ошибка программиста")
+            val post = Gson().fromJson(postJson, FeedPost::class.java)
+            comments(post)
         }
     }
 }

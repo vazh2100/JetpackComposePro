@@ -17,12 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import vazh2100.vk_client.domain.entities.FeedPost
 import vazh2100.vk_client.presentation.screens.feed.widget.PostCard
 import vazh2100.vk_client.presentation.theme.darkBlue
 
 @Composable
 fun FeedScreen(
-    onCommentsPress: (postId: Long) -> Unit,
+    onCommentsPress: (post: FeedPost) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: FeedViewModel = viewModel(),
 ) {
@@ -49,11 +50,10 @@ fun FeedScreen(
             ) {
                 PostCard(
                     feedPost = it,
-                    onCommentsPress = { onCommentsPress(it.value.id) },
+                    onCommentsPress = { onCommentsPress(it.value) },
                     onLikesPress = { viewModel.onLikesPress(index) },
                 )
             }
-            println("recomposed")
         }
         item {
             if (nextLoading.value) {

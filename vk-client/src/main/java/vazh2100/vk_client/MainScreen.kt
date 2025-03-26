@@ -39,7 +39,7 @@ fun MainScreen(
                         },
                     )
                 },
-                comments = { postId -> CommentScreen(onBackPress = { navController.popBackStack() }, postId = postId) },
+                comments = { post -> CommentScreen(onBackPress = { navController.popBackStack() }, post = post) },
                 favourite = {
                     var count by rememberSaveable { mutableIntStateOf(0) }
                     Text("favourite $count", modifier = Modifier.clickable { count++ })
