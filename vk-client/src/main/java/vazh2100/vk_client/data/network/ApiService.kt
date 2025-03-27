@@ -52,6 +52,5 @@ interface ApiService {
         @Query("owner_id") ownerId: Long,
         @Query("item_id") postId: Long,
         @Query("type") type: String = "post",
-
-        )
+    )
 }
