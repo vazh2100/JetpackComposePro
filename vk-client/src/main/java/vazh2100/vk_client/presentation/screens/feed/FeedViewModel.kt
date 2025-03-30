@@ -1,45 +1,25 @@
 package vazh2100.vk_client.presentation.screens.feed
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import vazh2100.vk_client.domain.entities.FeedPost
 import vazh2100.vk_client.domain.usecases.GetFeed
 import vazh2100.vk_client.domain.usecases.IgnorePost
 import vazh2100.vk_client.domain.usecases.Like
 import vazh2100.vk_client.domain.usecases.Unlike
 
-class FeedViewModel : ViewModel() {
+class FeedViewModel : FeedState() {
     private val getRecommendations = GetFeed
     private val like = Like
     private val unlike = Unlike
     private val ignorePost = IgnorePost
 
-    private var startFrom: String? = null
-    private val _feedPosts = mutableListOf<MutableState<FeedPost>>()
-    val feedPosts: List<State<FeedPost>> = _feedPosts
-
-    private val _nextLoading = MutableStateFlow(false)
-    val nextLoading = _nextLoading.asStateFlow()
-
-    val recomposeList = mutableIntStateOf(0)
-
-    init {
-        loadFeed()
-    }
-
-    fun loadFeed() = viewModelScope.launch {
+    fun onFeedEndReached() = viewModelScope.launch {
         _nextLoading.value = true
-        val (newsFeed, nextFrom) = getRecommendations(startFrom)
-        startFrom = nextFrom
+        val (newsFeed, lastPost) = getRecommendations(_lastPost)
+        _lastPost = lastPost
         _feedPosts.addAll(newsFeed.map { mutableStateOf(it) })
-        recomposeList.intValue++
+        listRecomposeNeeded.intValue++
         _nextLoading.value = false
     }
 
@@ -59,7 +39,7 @@ class FeedViewModel : ViewModel() {
     fun onSwipe(index: Int) = viewModelScope.launch {
         val post = _feedPosts[index].value
         ignorePost(post)
-        _feedPosts.removeAt(index);
-        recomposeList.intValue += 1
+        _feedPosts.removeAt(index)
+        listRecomposeNeeded.intValue += 1
     }
 }

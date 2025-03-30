@@ -28,7 +28,7 @@ fun FeedScreen(
     viewModel: FeedViewModel = viewModel(),
 ) {
     val postStates = viewModel.feedPosts
-    viewModel.recomposeList.intValue
+    viewModel.listRecomposeNeeded.intValue
 
     val nextLoading = viewModel.nextLoading.collectAsState()
 
@@ -64,7 +64,7 @@ fun FeedScreen(
                     CircularProgressIndicator(color = darkBlue)
                 }
             } else {
-                SideEffect { viewModel.loadFeed() }
+                SideEffect { viewModel.onFeedEndReached() }
             }
         }
     }
