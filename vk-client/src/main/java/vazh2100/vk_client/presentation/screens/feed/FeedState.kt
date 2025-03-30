@@ -19,4 +19,7 @@ open class FeedState : ViewModel() {
 
     protected val _nextLoading = MutableStateFlow(false)
     val nextLoading = _nextLoading.asStateFlow()
+
+    protected val _nextError = MutableStateFlow(false)
+    val nextError = _nextError.asStateFlow()
 }

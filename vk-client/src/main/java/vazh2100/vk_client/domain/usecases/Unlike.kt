@@ -7,6 +7,11 @@ import vazh2100.vk_client.domain.entities.FeedPost
 
 object Unlike {
     suspend operator fun invoke(post: FeedPost) = withContext(Dispatchers.IO) {
-        apiService.unlike(token = GetToken(), ownerId = post.communityId, postId = post.id)
+        try {
+            apiService.unlike(token = GetToken(), ownerId = post.communityId, postId = post.id)
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }

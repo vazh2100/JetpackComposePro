@@ -15,7 +15,9 @@ class CommentsViewModel(private val post: FeedPost) : ViewModel() {
     val comments = _comments.asStateFlow()
 
     init {
-        viewModelScope.launch { _comments.value = GetComments(post) }
+        viewModelScope.launch {
+            GetComments(post).onSuccess { _comments.value = it }
+        }
     }
 
     @Suppress("UNCHECKED_CAST")

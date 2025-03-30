@@ -8,7 +8,12 @@ import vazh2100.vk_client.domain.entities.FeedPost
 
 object GetComments {
     suspend operator fun invoke(post: FeedPost) = withContext(Dispatchers.IO) {
-        val response = apiService.comments(token = GetToken(), ownerId = post.communityId, postId = post.id)
-        response.toComments()
+        try {
+            val response = apiService.comments(token = GetToken(), ownerId = post.communityId, postId = post.id)
+            val mapped = response.toComments()
+            Result.success(mapped)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }
