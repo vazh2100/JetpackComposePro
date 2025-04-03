@@ -94,3 +94,10 @@ state Error. retry пишется перед catch.
 будет вызвана с тем же самым объектом(равен по equals) в качестве параметра, то её рекомпозиция не будет происходить.
 Это актуально для виджета управляющего навигацией.
 Эта аннотация говорит, что этот объект не будет изменён никогда, поэтому изменение var и списков игнорируется.
+
+animationSpec = tween(durationMillis = 3000, delayMillis = 0, easing = LinearEasing)
+animationSpec = spring() - анимация-пружина
+animationSpec = infiniteRepeatable( animation = tween(1500), repeatMode = RepeatMode.Reverse, initialStartOffset =
+StartOffset(1000)),
+val transition = rememberInfiniteTransition();
+val color2 by transition.animateColor(

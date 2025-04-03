@@ -1,7 +1,13 @@
+import androidx.compose.animation.animateColor
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +24,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -45,8 +52,9 @@ fun AnimationsScreen() {
 
 
 
+
         Box(
-            modifier = Modifier.size(200.dp),
+            modifier = Modifier.size(300.dp),
             contentAlignment = Alignment.Center,
         ) {
             AnimatedContainer(
@@ -96,25 +104,30 @@ private fun AnimatedContainer(
     isVisible: State<Boolean>,
 ) {
 
-    val size = animateDpAsState(if (isFullSize.value) 200.dp else 100.dp)
-    val corner = animateIntAsState(if (isRounded.value) 4 else 50)
+    val size = animateDpAsState(targetValue = if (isFullSize.value) 200.dp else 100.dp, animationSpec = tween())
+
+    val corner = animateIntAsState(targetValue = if (isRounded.value) 4 else 50)
     val borderWidth = animateDpAsState(if (isWithBorder.value) 25.dp else 0.dp)
-    val color = animateColorAsState(if (isBlue.value) Color.Blue else Color.Cyan)
+    val color =
+        animateColorAsState(targetValue = if (isBlue.value) Color.Blue else Color.Cyan, animationSpec = spring())
     val visibility = animateFloatAsState(if (isVisible.value) 1f else 0f)
+
+    val transition = rememberInfiniteTransition()
+    val color2 by transition.animateColor(
+        initialValue = Color.Red,
+        targetValue = Color.Cyan,
+        animationSpec = infiniteRepeatable(animation = tween(1500), repeatMode = RepeatMode.Reverse),
+    )
     Box(
         modifier = Modifier
             .alpha(visibility.value)
             .size(size.value)
             .clip(RoundedCornerShape(corner.value))
-            .border(borderWidth.value, color = Color.Red, shape = RoundedCornerShape(corner.value))
+            .border(borderWidth.value, color = color2, shape = RoundedCornerShape(corner.value))
             .background(color.value),
 
         contentAlignment = Alignment.Center,
     ) {
-        Text(
-            text = text,
-            color = Color.White,
-            textAlign = TextAlign.Center
-        )
+        Text(text = text, color = Color.White, textAlign = TextAlign.Center)
     }
 }
