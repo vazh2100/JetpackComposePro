@@ -1,6 +1,5 @@
 package animations
 
-import AnimationsScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,7 +20,7 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier.fillMaxSize().padding(top = 64.dp),
                 color = MaterialTheme.colorScheme.background
             ) {
-                AnimationsScreen()
+                AnimatedScreen()
             }
         }
     }
