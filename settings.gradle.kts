@@ -25,3 +25,4 @@ rootProject.name = "Jetpack Compose"
 include(":instagram")
 include(":vk-client")
 include(":animations")
+include(":canvas")
