@@ -105,3 +105,7 @@ val color2 by transition.animateColor(
 ###### Custom View
 drawLine(color = Color.White, start = Offset(50f, 50f), end = Offset(200f, 200f)) - рисование линии
 Нужно указывать размеры в dp, но потом конвертировать в pixels.
+
+Нарисовать звезду
+Написать Олег относительными функциями
+Продолжить смотреть урок

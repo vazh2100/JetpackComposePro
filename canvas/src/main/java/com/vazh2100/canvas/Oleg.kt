@@ -13,14 +13,10 @@ fun Oleg(modifier: Modifier = Modifier) {
         val color = Color.White
         val stroke = 5.dp.toPx()
 
-        val height = 50.dp.toPx()
-        val width = 30.dp.toPx()
-
-        val letterDiagonalShift = Offset(width, height)
-        val letterHorizontalShift = Offset(width, 0f)
-        val letterVerticalShift = Offset(0f, height)
-        val space = 20.dp.toPx()
-        val horizontalSpaceShift = Offset(space, 0f)
+        val letterDiagonalShift = Offset(30.dp.toPx(), 50.dp.toPx())
+        val letterHorizontalShift = Offset(30.dp.toPx(), 0f)
+        val letterVerticalShift = Offset(0f, 50.dp.toPx())
+        val horizontalSpaceShift = Offset(20.dp.toPx(), 0f)
 
         val initialOffset = Offset(100.dp.toPx(), 50.dp.toPx())
 
