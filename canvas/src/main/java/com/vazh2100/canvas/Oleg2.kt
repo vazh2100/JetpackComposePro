@@ -47,6 +47,7 @@ fun Oleg2(modifier: Modifier = Modifier) {
             relativeLineTo(-letterWidth, o)
             relativeLineTo(o, -letterHeight)
             relativeLineTo(letterWidth, o)
+            close()
         }
         val bounds = path.getBounds()
 

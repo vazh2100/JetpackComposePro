@@ -20,7 +20,10 @@ class MainActivity : ComponentActivity() {
             JetpackComposeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    CanvasWidget.kt(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
-                    Oleg2(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
+//                    Oleg2(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
+
+                    Star(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
+
                 }
             }
         }
