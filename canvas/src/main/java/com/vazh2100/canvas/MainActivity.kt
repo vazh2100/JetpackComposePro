@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
 //                    CanvasWidget.kt(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
 //                    Oleg2(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
 
-                    Star(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
+                    Star2(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
 
                 }
             }
