@@ -19,11 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackComposeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    CanvasWidget.kt(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
-//                    Oleg2(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
-
-                    Star2(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
-
+                    TouchDetector(modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Black))
                 }
             }
         }
